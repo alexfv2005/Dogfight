@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcvnr7fsqmao7"]
+[gd_scene load_steps=9 format=3 uid="uid://dcvnr7fsqmao7"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_r6yre"]
+[ext_resource type="PackedScene" uid="uid://bcqkpywo33hve" path="res://scenes/player.tscn" id="2_7trm5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ssomo"]
 size = Vector3(10, 0.1, 10)
@@ -54,11 +55,12 @@ shape = SubResource("SphereShape3D_0ibeq")
 replication_interval = 1.013
 replication_config = SubResource("SceneReplicationConfig_l3dgt")
 
-[node name="Camera3D" type="Camera3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2634, 6.45265)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 9.8731, 0)
+
+[node name="Player" type="Node3D" parent="World"]
+
+[node name="CharacterBody3D" parent="World" instance=ExtResource("2_7trm5")]
 
 [node name="UI" type="Control" parent="."]
 process_mode = 3
