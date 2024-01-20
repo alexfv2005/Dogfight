@@ -1,27 +1,33 @@
+# player.gd
 extends CharacterBody3D
 
 const ANGULAR_SPEED_PITCH = 50.0
 const ANGULAR_SPEED_ROLL = 80.0
 const ANGULAR_SPEED_YAW = 50.0
-var speed = 10.0
 
-var pitch_speed = 0.0
-var roll_speed = 0.0
-var yaw_speed = 0.0
+# Set by the authority, synchronized on spawn.
+@export var player := 1 :
+	set(id):
+		player = id
+		# Give authority over the player input to the appropriate peer.
+		$Input.set_multiplayer_authority(id)
 
-func _process(delta):
-	# Handle pitch, roll, and yaw input.
-	pitch_speed = lerp(pitch_speed, Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"), 0.1)
-	roll_speed = lerp(roll_speed, Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right"), 0.1)
-	yaw_speed = lerp(yaw_speed, Input.get_action_strength("game_a") - Input.get_action_strength("game_d"), 0.1)
+# Player synchronized input.
+@onready var input = $Input
 
-	# Update the rotation based on pitch, roll, and yaw input.
-	rotate_object_local(Vector3(1, 0, 0), pitch_speed * ANGULAR_SPEED_PITCH * delta * (PI / 180.0))
-	rotate_object_local(Vector3(0, 0, 1), roll_speed * ANGULAR_SPEED_ROLL * delta * (PI / 180.0))  # Change the axis to (0, 0, 1) for roll.
-	rotate_object_local(Vector3(0, 1, 0), yaw_speed * ANGULAR_SPEED_YAW * delta * (PI / 180.0))
-	
-	speed += Input.get_action_strength("game_w")
-	speed -= Input.get_action_strength("game_s")
+func _ready():
+	# Set the camera as current if we are this player.
+	if player == multiplayer.get_unique_id():
+		$Camera3D.current = true
+	# Only process on server.
+	# EDIT: Let the client simulate player movement too to compesate network input latency.
+	# set_physics_process(multiplayer.is_server())
+
+
+func _physics_process(delta):
+	rotate_object_local(Vector3(1, 0, 0), input.rotation_speeds.x * ANGULAR_SPEED_PITCH * delta * (PI / 180.0))
+	rotate_object_local(Vector3(0, 0, 1), input.rotation_speeds.y * ANGULAR_SPEED_ROLL * delta * (PI / 180.0))  # Change the axis to (0, 0, 1) for roll.
+	rotate_object_local(Vector3(0, 1, 0), input.rotation_speeds.z * ANGULAR_SPEED_YAW * delta * (PI / 180.0))
 	
 	# Move the plane forward.
-	translate(Vector3(0, 0, -speed * delta))
+	translate(Vector3(0, 0, input.speed * delta))
