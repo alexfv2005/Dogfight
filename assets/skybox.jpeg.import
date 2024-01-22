@@ -2,19 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkv16tn6k3ata"
-path.s3tc="res://.godot/imported/low_poly_space_ship_0.png-d07695d99177dc5de1e3593ea832a0d6.s3tc.ctex"
-path.etc2="res://.godot/imported/low_poly_space_ship_0.png-d07695d99177dc5de1e3593ea832a0d6.etc2.ctex"
+uid="uid://cjfncepf3diik"
+path.s3tc="res://.godot/imported/skybox.jpeg-e30a0563bfccf72e04c9e35bd997d0c0.s3tc.ctex"
+path.etc2="res://.godot/imported/skybox.jpeg-e30a0563bfccf72e04c9e35bd997d0c0.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 
-source_file="res://assets/ships/low_poly_space_ship_0.png"
-dest_files=["res://.godot/imported/low_poly_space_ship_0.png-d07695d99177dc5de1e3593ea832a0d6.s3tc.ctex", "res://.godot/imported/low_poly_space_ship_0.png-d07695d99177dc5de1e3593ea832a0d6.etc2.ctex"]
+source_file="res://assets/skybox.jpeg"
+dest_files=["res://.godot/imported/skybox.jpeg-e30a0563bfccf72e04c9e35bd997d0c0.s3tc.ctex", "res://.godot/imported/skybox.jpeg-e30a0563bfccf72e04c9e35bd997d0c0.etc2.ctex"]
 
 [params]
 

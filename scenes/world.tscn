@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpcje53pr52he"]
+[gd_scene load_steps=12 format=3 uid="uid://cpcje53pr52he"]
 
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_1pi3t"]
+[ext_resource type="Texture2D" uid="uid://cjfncepf3diik" path="res://assets/skybox.jpeg" id="2_bmhps"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ssomo"]
 size = Vector3(10, 0.1, 10)
@@ -22,6 +23,17 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:linear_velocity")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_s11q0"]
+panorama = ExtResource("2_bmhps")
+
+[sub_resource type="Sky" id="Sky_mlaso"]
+sky_material = SubResource("PanoramaSkyMaterial_s11q0")
+radiance_size = 6
+
+[sub_resource type="Environment" id="Environment_8dm5x"]
+background_mode = 2
+sky = SubResource("Sky_mlaso")
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_1pi3t")
@@ -61,3 +73,6 @@ spawn_path = NodePath("../Players")
 spawn_limit = 4
 
 [node name="Players" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8dm5x")

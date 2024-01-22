@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcqkpywo33hve"]
+[gd_scene load_steps=8 format=3 uid="uid://bcqkpywo33hve"]
 
 [ext_resource type="PackedScene" uid="uid://burb5halkr0u" path="res://assets/ships/low_poly_space_ship.glb" id="1_7nxc5"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_ukpfr"]
 [ext_resource type="Script" path="res://scenes/input.gd" id="3_a2r12"]
 [ext_resource type="Script" path="res://scenes/camera.gd" id="3_ls23w"]
-[ext_resource type="PackedScene" uid="uid://ovmwcyo8xlke" path="res://scenes/bullet.tscn" id="5_5kv62"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6kyf5"]
 height = 3.7
@@ -31,13 +30,16 @@ properties/2/replication_mode = 1
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.715279, 0)
 script = ExtResource("1_ukpfr")
-Bullet = ExtResource("5_5kv62")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.833422, 0.39799)
 shape = SubResource("CapsuleShape3D_6kyf5")
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("1_7nxc5")]
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.40446, -7)
+script = ExtResource("3_ls23w")
 
 [node name="Input" type="MultiplayerSynchronizer" parent="."]
 root_path = NodePath("../Sync")
@@ -46,12 +48,3 @@ script = ExtResource("3_a2r12")
 
 [node name="Sync" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_cg8ge")
-
-[node name="CamRoot" type="Node3D" parent="."]
-
-[node name="Camera" type="Camera3D" parent="CamRoot"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.40446, -7)
-script = ExtResource("3_ls23w")
-
-[node name="BulletSpawner" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.723139, 2.76856)
