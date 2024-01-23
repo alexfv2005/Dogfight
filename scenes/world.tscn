@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cpcje53pr52he"]
+[gd_scene load_steps=12 format=3 uid="uid://blje2bayyx8x2"]
 
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_1pi3t"]
 [ext_resource type="Texture2D" uid="uid://cjfncepf3diik" path="res://assets/skybox.jpeg" id="2_bmhps"]
@@ -72,7 +72,9 @@ _spawnable_scenes = PackedStringArray("res://scenes/player.tscn")
 spawn_path = NodePath("../Players")
 spawn_limit = 4
 
-[node name="Players" type="Node3D" parent="."]
+[node name="Players" type="Node" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8dm5x")
+
+[node name="Bullets" type="Node" parent="."]

@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcqkpywo33hve"]
+[gd_scene load_steps=9 format=3 uid="uid://c8koycu85ebae"]
 
 [ext_resource type="PackedScene" uid="uid://burb5halkr0u" path="res://assets/ships/low_poly_space_ship.glb" id="1_7nxc5"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_ukpfr"]
 [ext_resource type="Script" path="res://scenes/input.gd" id="3_a2r12"]
 [ext_resource type="Script" path="res://scenes/camera.gd" id="3_ls23w"]
-[ext_resource type="PackedScene" uid="uid://ovmwcyo8xlke" path="res://scenes/bullet.tscn" id="5_5kv62"]
+[ext_resource type="PackedScene" path="res://scenes/bullet.tscn" id="5_5kv62"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6kyf5"]
 height = 3.7

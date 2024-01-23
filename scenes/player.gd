@@ -15,6 +15,7 @@ const ANGULAR_SPEED_YAW = 50.0
 # Player synchronized input.
 @onready var input = $Input
 
+@export var BulletsCollection : Node
 @export var Bullet : PackedScene
 
 func _ready():
@@ -39,7 +40,6 @@ func _physics_process(delta):
 		shoot()
 
 func shoot():
-	print("lol")
 	var b = Bullet.instantiate()
-	get_owner().add_child(b)
+	BulletsCollection.add_child(b)
 	b.transform = $BulletSpawner.global_transform
