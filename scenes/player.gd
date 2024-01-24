@@ -36,10 +36,12 @@ func _physics_process(delta):
 	# Move the plane forward.
 	translate(Vector3(0, 0, input.speed * delta))
 	
-	if(Input.is_action_just_pressed("ui_accept")):
+	if(input.firering):
+		if not multiplayer.is_server():
+			return
 		shoot()
 
 func shoot():
 	var b = Bullet.instantiate()
-	BulletsCollection.add_child(b)
-	b.transform = $BulletSpawner.global_transform
+	BulletsCollection.add_child(b, true)
+	b.transform = $BulletMuzzle.global_transform

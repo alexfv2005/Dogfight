@@ -4,6 +4,7 @@ extends MultiplayerSynchronizer
 #Syncronize properties
 @export var rotation_speeds := Vector3()
 @export var speed := 10.0
+@export var firering := false
 
 func _ready():
 	#Disable for non local player instances
@@ -17,3 +18,5 @@ func _process(delta):
 
 	speed += Input.get_action_strength("game_w")
 	speed -= Input.get_action_strength("game_s")
+	
+	firering = Input.is_action_pressed("ui_accept")

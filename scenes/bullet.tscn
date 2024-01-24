@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://ovmwcyo8xlke"]
+[gd_scene load_steps=5 format=3 uid="uid://ovmwcyo8xlke"]
+
+[ext_resource type="Script" path="res://scenes/bullet.gd" id="1_eegq7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gbylx"]
 radius = 0.05
@@ -8,7 +10,16 @@ height = 1.0
 radius = 0.05
 height = 1.0
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5cgdd"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="Bullet" type="Area3D"]
+script = ExtResource("1_eegq7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -19,3 +30,10 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 shape = SubResource("CapsuleShape3D_hte8v")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="MultiplayerSync" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_5cgdd")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
