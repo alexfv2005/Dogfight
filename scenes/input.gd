@@ -16,7 +16,10 @@ func _process(delta):
 	rotation_speeds.y = lerp(rotation_speeds.y, Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"), 0.1)
 	rotation_speeds.z = lerp(rotation_speeds.z, Input.get_action_strength("game_a") - Input.get_action_strength("game_d"), 0.1)
 
-	speed += Input.get_action_strength("game_w")
-	speed -= Input.get_action_strength("game_s")
+	speed += Input.get_action_strength("game_w")/1.2
+	speed -= Input.get_action_strength("game_s")/1.2
+	
+	speed = clamp(speed, 0, 20)
+	
 	
 	firering = Input.is_action_pressed("ui_accept")
