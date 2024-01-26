@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8koycu85ebae"]
+[gd_scene load_steps=10 format=3 uid="uid://c8koycu85ebae"]
 
 [ext_resource type="PackedScene" uid="uid://burb5halkr0u" path="res://assets/ships/low_poly_space_ship.glb" id="1_7nxc5"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_ukpfr"]
 [ext_resource type="Script" path="res://scenes/input.gd" id="3_a2r12"]
 [ext_resource type="Script" path="res://scenes/camera.gd" id="3_ls23w"]
 [ext_resource type="PackedScene" uid="uid://ovmwcyo8xlke" path="res://scenes/bullet.tscn" id="5_5kv62"]
+[ext_resource type="Texture2D" uid="uid://dnk41lrppqiy7" path="res://assets/target_overlay.png" id="6_bnhhy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6kyf5"]
 height = 3.7
@@ -34,6 +35,7 @@ properties/2/replication_mode = 1
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.715279, 0)
 script = ExtResource("1_ukpfr")
+player = null
 Bullet = ExtResource("5_5kv62")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -58,3 +60,15 @@ script = ExtResource("3_ls23w")
 
 [node name="BulletMuzzle" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.723139, 2.76856)
+
+[node name="Hud" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Hud"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_bnhhy")
