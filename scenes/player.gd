@@ -17,8 +17,9 @@ const ANGULAR_SPEED_YAW = 50.0
 
 @export var BulletsCollection : Node
 @export var Bullet : PackedScene
+@export var Missile : PackedScene
 @export var PlayerCollection: Node
-@export var 
+@export var Target : String
 
 func _ready():
 	# Set the camera as current if we are this player.
@@ -43,11 +44,18 @@ func _physics_process(delta):
 			return
 		shoot()
 	
+	if(input.missile):
+		if not multiplayer.is_server():
+			return
+		missile()
+	
 	$Hud/TextureRect.hide()
+	Target = ""
 	if $CamRoot/Camera.current:
 		for target in get_parent().get_children():
 			if target != self:
 				if !$CamRoot/Camera.is_position_behind(target.global_position):
+					Target = target.name
 					$Hud/TextureRect.show()
 					$Hud/TextureRect.position = $CamRoot/Camera.unproject_position(target.global_position) - Vector2(64, 64)
 
@@ -55,3 +63,8 @@ func shoot():
 	var b = Bullet.instantiate()
 	BulletsCollection.add_child(b, true)
 	b.transform = $BulletMuzzle.global_transform
+
+func missile():
+	var m = Missile.instantiate()
+	BulletsCollection.add_child(m, true)
+	m.transform = $BulletMuzzle.global_transform

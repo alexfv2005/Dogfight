@@ -5,6 +5,7 @@ extends MultiplayerSynchronizer
 @export var rotation_speeds := Vector3()
 @export var speed := 10.0
 @export var firering := false
+@export var missile := false
 
 func _ready():
 	#Disable for non local player instances
@@ -23,3 +24,4 @@ func _process(delta):
 	
 	
 	firering = Input.is_action_pressed("ui_accept")
+	missile = Input.is_action_just_pressed("ui_focus_next")

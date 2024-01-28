@@ -80,5 +80,5 @@ environment = SubResource("Environment_8dm5x")
 [node name="Bullets" type="Node" parent="."]
 
 [node name="BulletSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://scenes/bullet.tscn")
+_spawnable_scenes = PackedStringArray("res://scenes/bullet.tscn", "res://scenes/missile.tscn")
 spawn_path = NodePath("../Bullets")
